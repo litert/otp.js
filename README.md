@@ -19,10 +19,10 @@ npm i @litert/otp --save
 
 ## Usage
 
-```ts
-import $OTP from "@litert/otp";
+See examples:
 
-```
+- [HOTP](./src/examples/hotp.ts)
+- [TOTP](./src/examples/totp.ts)
 
 ## Documents
 
