@@ -1,4 +1,4 @@
-# LiteRT/TimeZone
+# LiteRT/OTP
 
 [![npm version](https://img.shields.io/npm/v/@litert/otp.svg?colorB=brightgreen)](https://www.npmjs.com/package/@litert/otp "Stable Version")
 [![License](https://img.shields.io/npm/l/@litert/otp.svg?maxAge=2592000?style=plastic)](https://github.com/litert/otp/blob/master/LICENSE)
