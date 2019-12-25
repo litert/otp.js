@@ -1,6 +1,6 @@
 {
   "name": "@litert/otp",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "The OTP support library of LiteRT.",
   "main": "lib/index.js",
   "scripts": {

@@ -103,7 +103,7 @@ export default abstract class AbstractKeyMaker<T extends C.TType> implements C.I
 
         if (this._opts.issuer) {
 
-            query._opts.issuer = this._opts.issuer;
+            query.issuer = this._opts.issuer;
         }
 
         if (this._opts.counter) {

@@ -21,7 +21,8 @@ import $OTP from "../lib";
 const totp = $OTP.createTOTPKeyMaker({
     digits: 8,
     label: "Example4TOTP" + Math.random(),
-    secret: "163uV4MOLEr6FGKF2CEFh"
+    secret: "163uV4MOLEr6FGKF2CEFh",
+    issuer: "LiteRT"
 });
 
 console.log(totp.getCode());
