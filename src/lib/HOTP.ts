@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Angus.Fenying <fenying@litert.org>
+ * Copyright 2021 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-import * as C from "./Common";
-import AbstractKeyMaker from "./AbstractKeyMaker";
+import * as C from './Common';
+import AbstractKeyMaker from './AbstractKeyMaker';
 
-class HOTPKeyMaker extends AbstractKeyMaker<"hotp"> implements C.IHOTPKeyMaker {
+class HOTPKeyMaker extends AbstractKeyMaker<'hotp'> implements C.IHOTPKeyMaker {
 
     public counter: number;
 
     public constructor(opts: C.IHOTPOptions) {
 
-        super("hotp", opts);
+        super('hotp', opts);
 
         this.counter = opts.counter || 0;
     }

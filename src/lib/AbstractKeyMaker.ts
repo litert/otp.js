@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Angus.Fenying <fenying@litert.org>
+ * Copyright 2021 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import * as C from "./Common";
-import * as $Crypto from "crypto";
-import * as $URL from "url";
-import * as $Enc from "@litert/encodings";
+import * as C from './Common';
+import * as $Crypto from 'crypto';
+import * as $URL from 'url';
+import * as $Enc from '@litert/encodings';
 
 export default abstract class AbstractKeyMaker<T extends C.TType> implements C.IKeyMaker {
 
@@ -32,17 +32,17 @@ export default abstract class AbstractKeyMaker<T extends C.TType> implements C.I
 
         if (opts.secret.length < 16) {
 
-            throw new RangeError("The length of OTP secret must be at least 128 bits.");
+            throw new RangeError('The length of OTP secret must be at least 128 bits.');
         }
 
         this._opts = {
             secret: opts.secret instanceof Buffer ? opts.secret : Buffer.from(opts.secret),
             algorithm: C.DEFAULT_HASH_ALGO,
-            digits: opts.digits || C.DEFAULT_DIGITS,
+            digits: opts.digits ?? C.DEFAULT_DIGITS,
             label: opts.label,
-            counter: opts.counter || C.DEFAULT_HOTP_COUNTER,
-            issuer: opts.issuer || "",
-            period: opts.period || C.DEFAULT_TOTP_PERIOD
+            counter: opts.counter ?? C.DEFAULT_HOTP_COUNTER,
+            issuer: opts.issuer ?? '',
+            period: opts.period ?? C.DEFAULT_TOTP_PERIOD
         };
 
         this._mod = Math.pow(10, this.digits);
@@ -63,7 +63,7 @@ export default abstract class AbstractKeyMaker<T extends C.TType> implements C.I
         this._opts.digits = v;
     }
 
-    public get algorithm(): C.IKeyMaker["algorithm"] {
+    public get algorithm(): C.IKeyMaker['algorithm'] {
 
         return this._opts.algorithm;
     }
@@ -96,9 +96,9 @@ export default abstract class AbstractKeyMaker<T extends C.TType> implements C.I
     public get url(): string {
 
         const query: Record<string, any> = {
-            "secret": $Enc.bufferToBase32(this._opts.secret as Buffer),
-            "algorithm": this._opts.algorithm,
-            "digits": this._opts.digits
+            'secret': $Enc.bufferToBase32(this._opts.secret as Buffer),
+            'algorithm': this._opts.algorithm,
+            'digits': this._opts.digits
         };
 
         if (this._opts.issuer) {
@@ -116,9 +116,9 @@ export default abstract class AbstractKeyMaker<T extends C.TType> implements C.I
         }
 
         return $URL.format({
-            "protocol": "otpauth",                                     // Protocol
-            "hostname": `//${this._type}`,                              // Type
-            "pathname": `/${encodeURIComponent(this._opts.label)}`,     // Label
+            'protocol': 'otpauth',                                     // Protocol
+            'hostname': `//${this._type}`,                              // Type
+            'pathname': `/${encodeURIComponent(this._opts.label)}`,     // Label
             query
         });
     }
@@ -127,7 +127,7 @@ export default abstract class AbstractKeyMaker<T extends C.TType> implements C.I
 
     public getCodeByHOTP(c: number): string {
 
-        const hmac = $Crypto.createHmac("sha1", this._opts.secret);
+        const hmac = $Crypto.createHmac('sha1', this._opts.secret);
 
         const counter = Buffer.allocUnsafe(8);
 
@@ -154,6 +154,6 @@ export default abstract class AbstractKeyMaker<T extends C.TType> implements C.I
             | (hResult[offset + 3] & 0xFF)
         ) % this._mod;
 
-        return code.toString().padStart(this._opts.digits, "0");
+        return code.toString().padStart(this._opts.digits, '0');
     }
 }

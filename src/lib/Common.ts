@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Angus.Fenying <fenying@litert.org>
+ * Copyright 2021 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,44 +16,44 @@
 
 export type TKeyDigits = 6 | 7 | 8 | 9 | 10;
 
-export type TType = "hotp" | "totp";
+export type TType = 'hotp' | 'totp';
 
 export interface IKeyMaker {
 
     /**
      * The secret of OTP.
      */
-    readonly "secret": Buffer;
+    readonly 'secret': Buffer;
 
     /**
      * The digits of OTP.
      */
-    readonly "digits": TKeyDigits;
+    readonly 'digits': TKeyDigits;
 
     /**
      * The hash algorithm of OTP.
      */
-    readonly "algorithm": "SHA1";
+    readonly 'algorithm': 'SHA1';
 
     /**
      * The url of OTP.
      */
-    readonly "url": string;
+    readonly 'url': string;
 
     /**
      * The type of OTP.
      */
-    readonly "type": TType;
+    readonly 'type': TType;
 
     /**
      * The name of owner/account that OTP belongs to.
      */
-    "label": string;
+    'label': string;
 
     /**
      * The name of issuer of OTP.
      */
-    "issuer": string;
+    'issuer': string;
 
     /**
      * Get the current OTP code.
@@ -68,12 +68,12 @@ export interface IOptions {
      *
      * RFC-4226 requires the length of secret must be at least 128-bits.
      */
-    "secret": string | Buffer;
+    'secret': string | Buffer;
 
     /**
      * The name of this key.
      */
-    "label": string;
+    'label': string;
 
     /**
      * The final output length of key.
@@ -83,14 +83,14 @@ export interface IOptions {
      *
      * @default 6
      */
-    "digits"?: TKeyDigits;
+    'digits'?: TKeyDigits;
 
     /**
      * The issuer of the key.
      *
      * @default ""
      */
-    "issuer"?: string;
+    'issuer'?: string;
 
     /**
      * The HMAC hash algorithm of the key.
@@ -99,14 +99,14 @@ export interface IOptions {
      *
      * @default "SHA1"
      */
-    "algorithm"?: "SHA1";
+    'algorithm'?: 'SHA1';
 
     /**
      * The initial counter for HOTP algorithm.
      *
      * @default 0
      */
-    "counter"?: number;
+    'counter'?: number;
 
     /**
      * The period for TOTP algorithm, in seconds.
@@ -116,7 +116,7 @@ export interface IOptions {
      *
      * @default 30
      */
-    "period"?: number;
+    'period'?: number;
 }
 
 export interface IHOTPKeyMaker extends IKeyMaker {
@@ -127,9 +127,9 @@ export interface IHOTPKeyMaker extends IKeyMaker {
      * Manually increase this value to get a new code. RFC-4226 requires
      * increasing the counter only when the last code is validated successfully.
      */
-    "counter": number;
+    'counter': number;
 
-    readonly "type": "hotp";
+    readonly 'type': 'hotp';
 }
 
 export interface ITOTPKeyMaker extends IKeyMaker {
@@ -137,23 +137,23 @@ export interface ITOTPKeyMaker extends IKeyMaker {
     /**
      * The period of TOTP key maker.
      */
-    readonly "period": number;
+    readonly 'period': number;
 
-    readonly "type": "totp";
+    readonly 'type': 'totp';
 }
 
 export interface IHOTPOptions extends IOptions {
 
-    "period"?: never;
+    'period'?: never;
 
-    "counter": number;
+    'counter': number;
 }
 
 export interface ITOTPOptions extends IOptions {
 
-    "counter"?: never;
+    'counter'?: never;
 
-    "period"?: number;
+    'period'?: number;
 }
 
 export interface IFactory {
@@ -186,4 +186,4 @@ export const DEFAULT_HOTP_COUNTER = 0;
 
 export const DEFAULT_TOTP_PERIOD = 30;
 
-export const DEFAULT_HASH_ALGO = "SHA1";
+export const DEFAULT_HASH_ALGO = 'SHA1';

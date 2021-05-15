@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Angus.Fenying <fenying@litert.org>
+ * Copyright 2021 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-import * as $Url from "url";
-import * as $QS from "querystring";
-import * as $Enc from "@litert/encodings";
-import * as C from "./Common";
-import { createHOTPKeyMaker } from "./HOTP";
-import { createTOTPKeyMaker } from "./TOTP";
+import * as $Url from 'url';
+import * as $QS from 'querystring';
+import * as $Enc from '@litert/encodings';
+import * as C from './Common';
+import { createHOTPKeyMaker } from './HOTP';
+import { createTOTPKeyMaker } from './TOTP';
 
 export class OTPFactory implements C.IFactory {
 
@@ -39,25 +39,25 @@ export class OTPFactory implements C.IFactory {
 
         const qs = info.query ? $QS.parse(info.query) : {} as Record<string, any>;
 
-        if (info.protocol !== "otpauth:") {
+        if (info.protocol !== 'otpauth:') {
 
-            throw new RangeError("Invalid OTP url: Incorrect protocol.");
+            throw new RangeError('Invalid OTP url: Incorrect protocol.');
         }
 
         const opts: C.IOptions = {} as any;
 
         if (info.pathname) {
 
-            opts.label = info.pathname.split("/")[1];
+            opts.label = info.pathname.split('/')[1];
         }
         else {
 
-            opts.label = "Unknown";
+            opts.label = 'Unknown';
         }
 
         if (!qs.secret || !qs.digits || ![6, 7, 8, 9, 10].includes(parseInt(qs.digits))) {
 
-            throw new RangeError("Invalid OTP url: Lack of digits and secret.");
+            throw new RangeError('Invalid OTP url: Lack of digits and secret.');
         }
 
         opts.secret = $Enc.bufferFromBase32(qs.secret);
@@ -68,48 +68,48 @@ export class OTPFactory implements C.IFactory {
             opts.issuer = qs.issuer;
         }
 
-        if (qs.algorithm && qs.algorithm !== "SHA1") {
+        if (qs.algorithm && qs.algorithm !== 'SHA1') {
 
-            throw new RangeError("Invalid OTP url: Invalid hash algorithm.");
+            throw new RangeError('Invalid OTP url: Invalid hash algorithm.');
         }
 
         switch (info.hostname) {
-        case "hotp":
+            case 'hotp':
 
-            if (!qs.counter) {
+                if (!qs.counter) {
 
-                opts.counter = 0;
-            }
-            else if (parseInt(qs.counter).toString() === qs.counter) {
+                    opts.counter = 0;
+                }
+                else if (parseInt(qs.counter).toString() === qs.counter) {
 
-                opts.counter = parseInt(qs.counter);
-            }
-            else {
-
-                throw new RangeError("Invalid OTP url: Invalid counter for HOTP.");
-            }
-
-            return this.createHOTPKeyMaker(opts as C.IHOTPOptions);
-
-        case "totp":
-
-            if (qs.period) {
-
-                if (parseInt(qs.period).toString() === qs.period) {
-
-                    opts.period = parseInt(qs.period);
+                    opts.counter = parseInt(qs.counter);
                 }
                 else {
 
-                    throw new RangeError("Invalid OTP url: Invalid period for TOTP.");
+                    throw new RangeError('Invalid OTP url: Invalid counter for HOTP.');
                 }
-            }
 
-            return this.createTOTPKeyMaker(opts as C.ITOTPOptions);
+                return this.createHOTPKeyMaker(opts as C.IHOTPOptions);
 
-        default:
+            case 'totp':
 
-            throw new RangeError("Invalid OTP url: Unknown OTP type.");
+                if (qs.period) {
+
+                    if (parseInt(qs.period).toString() === qs.period) {
+
+                        opts.period = parseInt(qs.period);
+                    }
+                    else {
+
+                        throw new RangeError('Invalid OTP url: Invalid period for TOTP.');
+                    }
+                }
+
+                return this.createTOTPKeyMaker(opts as C.ITOTPOptions);
+
+            default:
+
+                throw new RangeError('Invalid OTP url: Unknown OTP type.');
         }
     }
 }

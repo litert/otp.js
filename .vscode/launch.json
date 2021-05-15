@@ -7,25 +7,23 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "[LiteRT/OTP.js] Example 01 - TOTP",
-            "program": "${workspaceFolder}/src/examples/totp.ts",
+            "name": "[LiteRT/OTP.js] HOTP",
+            "program": "${workspaceFolder}/src/examples/hotp.ts",
             "sourceMaps": true,
             "cwd": "${workspaceFolder}",
             "outFiles": [
-                "${workspaceFolder}/lib/*.js",
-                "${workspaceFolder}/examples/*.js"
+                "${workspaceFolder}/**/*.js"
             ]
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "[LiteRT/OTP.js] Example 02 - HOTP",
-            "program": "${workspaceFolder}/src/examples/hotp.ts",
+            "name": "[LiteRT/OTP.js] TOTP",
+            "program": "${workspaceFolder}/src/examples/totp.ts",
             "sourceMaps": true,
             "cwd": "${workspaceFolder}",
             "outFiles": [
-                "${workspaceFolder}/lib/*.js",
-                "${workspaceFolder}/examples/*.js"
+                "${workspaceFolder}/**/*.js"
             ]
         }
     ]
