@@ -27,7 +27,7 @@ See examples:
 
 ## Documents
 
-Preparing yet.
+- [简体中文版](./docs/zh-CN/README.md)
 
 ## License
 
