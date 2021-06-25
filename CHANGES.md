@@ -1,5 +1,9 @@
 # Change Logs
 
+## v1.0.1
+
+- fix(url): use second as unit of period in OTP URL.
+
 ## v1.0.0
 
 - build(project): refactored with simplified APIs.

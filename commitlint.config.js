@@ -10,7 +10,7 @@ module.exports = {
         'scope-enum': [2, 'always', [
             'hotp',
             'totp',
-            'generator',
+            'url',
             'test',
             'doc',
             'deps',
