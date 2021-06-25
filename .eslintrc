@@ -24,6 +24,7 @@
         "brace-style": "off",
         "@typescript-eslint/brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
         "camelcase": "off",
+        "max-len": ["error", 100],
         "@typescript-eslint/ban-types": ["error", {
             "types": {
 

@@ -5,7 +5,11 @@
 /.gitignore
 /.npmignore
 /tsconfig.json
-/tslint.json
 /docs/
 /examples/
+/src/examples/
 /utils/
+/.husky/
+/commitlint.config.js
+/.eslintrc
+/.eslintignore

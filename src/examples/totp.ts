@@ -14,23 +14,23 @@
  * limitations under the License.
  */
 
-// tslint:disable: no-console
+import { bufferFromBase32 } from "@litert/encodings";
+import * as $OTP from "../lib";
 
-import $OTP from "../lib";
+const TEST_LABEL = 'Example4TOTP';
+const TEST_SECRET = bufferFromBase32('HHALRDEFGHCMMUE23GX5XALFA77U5ORU');
 
-const totp = $OTP.createTOTPKeyMaker({
-    digits: 8,
-    label: "Example4TOTP" + Math.random(),
-    secret: "163uV4MOLEr6FGKF2CEFh",
-    issuer: "LiteRT"
-});
+const totpGenerator = $OTP.createTOTPGenerator(TEST_SECRET);
 
-console.log(totp.getCode());
+console.log(totpGenerator());
+console.log($OTP.makeTOTPCode(TEST_SECRET));
 
-const totp2 = $OTP.createKeyMakerFromUrl(totp.url);
+console.log($OTP.generateTOTPUrl(TEST_SECRET, TEST_LABEL));
 
-console.log(totp.url);
-console.log(totp2.url);
+const url = $OTP.parseOTPUrl($OTP.generateTOTPUrl(TEST_SECRET, TEST_LABEL));
 
-console.log(totp.getCode());
-console.log(totp2.getCode());
+console.log(url);
+
+const totpGenerator2 = $OTP.createTOTPGenerator(url.secret, url.digits, url.period);
+console.log(totpGenerator2());
+console.log($OTP.makeTOTPCode(url.secret, url.digits, url.period));

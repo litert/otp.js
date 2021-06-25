@@ -3,22 +3,15 @@ module.exports = {
     'defaultIgnores': false,
     'rules': {
         'type-enum': [2, 'always', [
-            'feat',
             'fix',
             'add',
-            'test',
-            'refactor',
-            'perf',
-            'style',
-            'config',
-            'merge'
+            'build'
         ]],
         'scope-enum': [2, 'always', [
-            'api',
-            'factory',
             'hotp',
             'totp',
             'generator',
+            'test',
             'doc',
             'deps',
             'lint',

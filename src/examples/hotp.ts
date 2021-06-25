@@ -14,22 +14,21 @@
  * limitations under the License.
  */
 
-// tslint:disable: no-console
+import { bufferFromBase32 } from "@litert/encodings";
+import * as $OTP from "../lib";
 
-import $OTP from "../lib";
+const TEST_LABEL = 'Example4HOTP';
+const TEST_SECRET = bufferFromBase32('B4PSUNCFJMQCUEBGEEFSYCTD');
 
-const htop = $OTP.createHOTPKeyMaker({
-    counter: 0,
-    label: "Example4HOTP",
-    secret: "163uV4MOLEr6FGKF2CEFh"
-});
+const hotpGenerator = $OTP.createHOTPGenerator(TEST_SECRET);
 
-console.log(htop.getCode());
+console.log(hotpGenerator(123));
+console.log($OTP.makeHOTPCode(TEST_SECRET, 123));
 
-const htop2 = $OTP.createKeyMakerFromUrl(htop.url);
+console.log($OTP.generateHOTPUrl(TEST_SECRET, 123, TEST_LABEL));
 
-console.log(htop.url);
-console.log(htop2.url);
+const url = $OTP.parseOTPUrl($OTP.generateHOTPUrl(TEST_SECRET, 123, TEST_LABEL));
 
-console.log(htop.getCode());
-console.log(htop2.getCode());
+console.log(url);
+
+console.log($OTP.makeHOTPCode(url.secret, url.sequence!, url.digits));

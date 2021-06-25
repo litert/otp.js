@@ -1,5 +1,9 @@
 # Change Logs
 
+## v1.0.0
+
+- build(project): refactored with simplified APIs.
+
 ## v0.1.3
 
 - config(deps): replaced `tslint` with `eslint`.
