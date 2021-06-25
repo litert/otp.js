@@ -3,6 +3,7 @@
 ## v1.0.1
 
 - fix(url): use second as unit of period in OTP URL.
+- fix(totp): use second as unit of period in TOTP.
 
 ## v1.0.0
 

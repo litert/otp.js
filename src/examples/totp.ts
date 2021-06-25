@@ -18,7 +18,7 @@ import { bufferFromBase32 } from "@litert/encodings";
 import * as $OTP from "../lib";
 
 const TEST_LABEL = 'Example4TOTP';
-const TEST_SECRET = bufferFromBase32('HHALRDEFGHCMMUE23GX5XALFA77U5ORU');
+const TEST_SECRET = bufferFromBase32('B4PSUNCFJMQCUEBGEEFSYCTD');
 
 const totpGenerator = $OTP.createTOTPGenerator(TEST_SECRET);
 

@@ -70,15 +70,15 @@ export function makeHOTPCode(secret: Buffer, sequence: number, digits: number = 
  *
  * @param secret    The secret of TOTP
  * @param digits    The output width of OTP
- * @param period  The code generation interval of TOTP, in millisecond.
+ * @param period    The code generation interval of TOTP, in second.
  */
 export function makeTOTPCode(
     secret: Buffer,
     digits: number = 6,
-    period: number = 30000
+    period: number = 30
 ): string {
 
-    return makeHOTPCode(secret, Math.floor(Date.now() / period), digits);
+    return makeHOTPCode(secret, Math.floor(Date.now() / period / 1000), digits);
 }
 
 export type ITOTPGenerator = () => string;
@@ -90,18 +90,20 @@ export type IHOTPGenerator = (sequence: number) => string;
  *
  * @param secret    The secret of TOTP code.
  * @param digits    The output width of OTP
- * @param period  The code generation interval of TOTP, in millisecond.
+ * @param period    The code generation interval of TOTP, in second.
  */
 export function createTOTPGenerator(
     secret: string | Buffer,
     digits: number = 6,
-    period: number = 30000
+    period: number = 30
 ): ITOTPGenerator {
 
     if (typeof secret === 'string') {
 
         secret = $Enc.bufferFromBase32(secret);
     }
+
+    period *= 1000;
 
     return () => makeHOTPCode(secret as Buffer, Math.floor(Date.now() / period), digits);
 }
@@ -168,14 +170,14 @@ export function generateHOTPUrl(
  * @param secret    The secret of OTP code.
  * @param label     The label of OTP code to display in OTP authenticator app.
  * @param issuer    The issuer of OTP code to display in OTP authenticator app.
- * @param period  The interval of every TOTP code, in milliseconds.
+ * @param period    The interval of every TOTP code, in seconds.
  * @param digits    The output width of OTP
  */
 export function generateTOTPUrl(
     secret: Buffer,
     label: string,
     issuer?: string,
-    period: number = 30000,
+    period: number = 30,
     digits: number = 6,
 ): string {
 
@@ -185,7 +187,7 @@ export function generateTOTPUrl(
 
     ret.searchParams.set('algorithm', 'SHA1');
     ret.searchParams.set('digits', digits as any);
-    ret.searchParams.set('period', Math.floor(period / 1000) as any);
+    ret.searchParams.set('period', period as any);
 
     if (issuer) {
 
@@ -213,7 +215,7 @@ export interface IOTPUrlInfo {
     digits: number;
 
     /**
-     * The interval of every TOTP code, in milliseconds.
+     * The interval of every TOTP code, in seconds.
      */
     period?: number;
 
@@ -303,12 +305,10 @@ export function parseOTPUrl(url: string): ITOTPUrlInfo | IHOTPUrlInfo {
 
                     throw new SyntaxError('Invalid HTOP url with invalid period.');
                 }
-
-                ret.period *= 1000;
             }
             else {
 
-                ret.period = 30000;
+                ret.period = 30;
             }
             break;
         default:
