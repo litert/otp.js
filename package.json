@@ -11,7 +11,8 @@
     "test": "echo See directory src/examples",
     "clean": "rm -rf lib examples",
     "typecheck": "tsc -p . --noEmit",
-    "lint": "eslint --ext ts src"
+    "lint": "eslint --ext ts src",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -33,13 +34,11 @@
   "typings": "lib/index.d.ts",
   "types": "lib/index.d.ts",
   "devDependencies": {
-    "@commitlint/cli": "^12.1.4",
-    "@commitlint/config-conventional": "^12.1.4",
-    "@types/node": "^15.12.4",
-    "@typescript-eslint/eslint-plugin": "^4.28.0",
-    "@typescript-eslint/parser": "^4.28.0",
-    "eslint": "^7.29.0",
-    "husky": "^6.0.0",
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@types/node": "^18.7.15",
+    "@litert/eslint-plugin-rules": "^0.1.0",
+    "husky": "^8.0.1",
     "typescript": "^4.3.4"
   },
   "dependencies": {
