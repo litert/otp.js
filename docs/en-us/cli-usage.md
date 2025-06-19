@@ -10,7 +10,13 @@ This project provides a command-line interface (CLI) for OTP operations, with be
 
 ## Installation
 
-You can install the CLI globally using npm:
+The manual installation is not required if you want to use the CLI directly with `npx`. You can run the CLI commands without installing it globally or locally.
+
+```bash
+npx @litert/otp -k 'raw:1234567890'
+```
+
+However, if you want to install the CLI for easier access or to use it in scripts, you can do so by installing the package via npm.
 
 ```bash
 npm install -g @litert/otp
@@ -24,6 +30,7 @@ npm install @litert/otp # -D if you want to use it as a dev dependency
 For the detailed usage, you can run the CLI with the `--help`/`-h` option:
 
 ```bash
+npx @litert/otp --help
 npx otp --help
 ```
 

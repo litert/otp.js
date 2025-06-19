@@ -45,17 +45,32 @@ Click [here](./docs/en-us/quick-start.md) for a quick start guide.
 
 ### Use as a command line tool
 
-```sh
-npm i -g @litert/otp
-# or install in local project only
-npm i @litert/otp # -D # if only used in dev environment
-```
+You can use this library as a command line tool to do OTP operations.
 
-Then you can generate TOTP codes
+There are two ways to use the CLI:
 
-```sh
-npx otp -k 'raw:1234567890'
-```
+1. Use `npx` to run the CLI without installing it manually.
+
+    ```sh
+    npx @litert/otp -k 'raw:1234567890'
+
+    # Check the help message
+    npx @litert/otp --help
+    ```
+
+2. Install it globally or locally in your project.
+
+    ```sh
+    npm i -g @litert/otp
+    # or install in local project only
+    npm i @litert/otp # -D # if only used in dev environment
+    ```
+
+    Then you can use the `otp` command directly:
+
+    ```sh
+    npx otp -k 'raw:1234567890'
+    ```
 
 Click [here](./docs/en-us/cli-usage.md) for more details about the CLI usage.
 

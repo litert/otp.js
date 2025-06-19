@@ -16,7 +16,7 @@ module.exports = {
             'cli:gen-url',
             'cli:inspect-url',
             'test',
-            'doc',
+            'docs',
             'deps',
             'lint',
             'branch',
