@@ -8,9 +8,13 @@ module.exports = {
             'build'
         ]],
         'scope-enum': [2, 'always', [
-            'hotp',
-            'totp',
-            'url',
+            'lib:hotp',
+            'lib:totp',
+            'lib:url',
+            'cli:totp',
+            'cli:hotp',
+            'cli:gen-url',
+            'cli:inspect-url',
             'test',
             'doc',
             'deps',

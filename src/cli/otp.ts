@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * Copyright 2025 Angus.Fenying <fenying@litert.org>
  *
@@ -14,7 +16,11 @@
  * limitations under the License.
  */
 
-export * as TOTP from './TOTP';
-export * as HOTP from './HOTP';
-export * as URL from './URL';
-export * as Constants from './Constants';
+import { OtpCLI } from "./OtpCLI";
+
+const otpCli = new OtpCLI();
+
+const [ob, exitCode] = otpCli.process(process.argv.slice(2));
+
+console.log(ob.join("\n"));
+process.exit(exitCode);

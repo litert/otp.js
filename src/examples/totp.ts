@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Angus.Fenying <fenying@litert.org>
+ * Copyright 2025 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,23 +14,43 @@
  * limitations under the License.
  */
 
-import { bufferFromBase32 } from "@litert/encodings";
-import * as $OTP from "../lib";
+import { bufferFromBase32 } from "@litert/base32";
+import { TOTP, URL, Constants } from "../lib";
 
 const TEST_LABEL = 'Example4TOTP';
-const TEST_SECRET = bufferFromBase32('B4PSUNCFJMQCUEBGEEFSYCTD');
+const TEST_KEY = bufferFromBase32('B4PSUNCFJMQCUEBGEEFSYCTD');
 
-const totpGenerator = $OTP.createTOTPGenerator(TEST_SECRET);
+const fnGen1 = TOTP.createGenerator(TEST_KEY);
 
-console.log(totpGenerator());
-console.log($OTP.makeTOTPCode(TEST_SECRET));
+console.log(`API Generated Code: ${TOTP.generate(TEST_KEY)}`);
+console.log(`Generator 1 Generated Code: ${fnGen1()}`);
 
-console.log($OTP.generateTOTPUrl(TEST_SECRET, TEST_LABEL));
+const url = URL.stringify({
+    type: 'totp',
+    key: TEST_KEY,
+    label: TEST_LABEL,
+    digits: 6,
+    period: 30,
+    issuer: '@litert/otp',
+});
 
-const url = $OTP.parseOTPUrl($OTP.generateTOTPUrl(TEST_SECRET, TEST_LABEL));
+console.log(`OTP URL: ${url}`);
 
-console.log(url);
+const urlInfo = URL.parse(url);
 
-const totpGenerator2 = $OTP.createTOTPGenerator(url.secret, url.digits, url.period);
-console.log(totpGenerator2());
-console.log($OTP.makeTOTPCode(url.secret, url.digits, url.period));
+console.log(`Parsed URL Info: `, urlInfo);
+
+if (urlInfo.type !== 'totp') {
+    throw new Error('Invalid URL type');
+}
+
+const fnGen2 = TOTP.createGenerator(
+    urlInfo.key,
+    urlInfo.digits,
+    urlInfo.period
+);
+
+console.log(`Generator 2 Generated Code: ${fnGen2()}`);
+
+console.log(`API Generated Code: ${TOTP.generate(urlInfo.key as Buffer, Date.now(), urlInfo.digits, urlInfo.period)}`);
+console.log(`API Generated Code (SHA256): ${TOTP.generate(urlInfo.key as Buffer, Date.now(), 8, urlInfo.period, Constants.EDigest.SHA256)}`);

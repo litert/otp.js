@@ -1,19 +1,11 @@
 # Change Logs
 
-## v1.0.1
+## v2.0.0
 
-- fix(url): use second as unit of period in OTP URL.
-- fix(totp): use second as unit of period in TOTP.
-
-## v1.0.0
-
-- build(project): refactored with simplified APIs.
-
-## v0.1.3
-
-- config(deps): replaced `tslint` with `eslint`.
-- config(deps): updated `@litert/encodings` to `v2.2.0`.
-
-## v0.1.2
-
-- Fixed the `issuer` field.
+- build(project): refactored with supports for full OTP features.
+- feat(hotp): added support for other digest algorithms.
+- feat(totp): added support for other digest algorithms.
+- feat(url): added support for generating OTP URLs.
+- feat(cli): added CLI tool for OTP operations.
+- build(test): added unit tests for all features.
+- build(docs): added full documentation for the library and CLI tool.

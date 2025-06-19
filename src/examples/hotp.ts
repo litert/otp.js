@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Angus.Fenying <fenying@litert.org>
+ * Copyright 2025 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,43 @@
  * limitations under the License.
  */
 
-import { bufferFromBase32 } from "@litert/encodings";
-import * as $OTP from "../lib";
+import { bufferFromBase32 } from "@litert/base32";
+import { URL, HOTP } from "../lib";
 
 const TEST_LABEL = 'Example4HOTP';
-const TEST_SECRET = bufferFromBase32('B4PSUNCFJMQCUEBGEEFSYCTD');
+const TEST_KEY = bufferFromBase32('B4PSUNCFJMQCUEBGEEFSYCTD');
 
-const hotpGenerator = $OTP.createHOTPGenerator(TEST_SECRET);
+const fnGen1 = HOTP.createGenerator(TEST_KEY);
 
-console.log(hotpGenerator(123));
-console.log($OTP.makeHOTPCode(TEST_SECRET, 123));
+const seq = 123;
 
-console.log($OTP.generateHOTPUrl(TEST_SECRET, 123, TEST_LABEL));
+console.log(`API Generated Code: ${HOTP.generate(TEST_KEY, seq)}`);
+console.log(`Generator 1 Generated Code: ${fnGen1(seq)}`);
 
-const url = $OTP.parseOTPUrl($OTP.generateHOTPUrl(TEST_SECRET, 123, TEST_LABEL));
+const url = URL.stringify({
+    type: 'hotp',
+    key: TEST_KEY,
+    label: TEST_LABEL,
+    digits: 6,
+    sequence: seq,
+    issuer: '@litert/otp',
+});
 
-console.log(url);
+console.log(`OTP URL: ${url}`);
 
-console.log($OTP.makeHOTPCode(url.secret, url.sequence!, url.digits));
+const urlInfo = URL.parse(url);
+
+console.log(`Parsed URL Info: `, urlInfo);
+
+if (urlInfo.type !== 'hotp') {
+    throw new Error('Invalid URL type');
+}
+
+const fnGen2 = HOTP.createGenerator(
+    urlInfo.key,
+    urlInfo.digits,
+);
+
+console.log(`Generator 2 Generated Code: ${fnGen2(urlInfo.sequence!)}`);
+
+console.log(`API Generated Code: ${HOTP.generate(urlInfo.key as Buffer, urlInfo.sequence!, urlInfo.digits,)}`);
