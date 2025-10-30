@@ -6,6 +6,9 @@ export default defineConfig({
   title: "@litert/otp",
   description: "The TOTP & HOTP implement for Node.JS.",
   base: '/projects/otp.js/',
+  sitemap: {
+    hostname: 'https://litert.org/projects/otp.js/'
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
