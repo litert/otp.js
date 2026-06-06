@@ -2,7 +2,7 @@
 
 # Function: generate()
 
-> **generate**(`key`, `time`, `digits`, `period`, `digest`): `string`
+> **generate**(`key`, `time?`, `digits?`, `period?`, `digest?`): `string`
 
 Defined in: [TOTP.ts:36](https://github.com/litert/otp.js/blob/master/src/lib/TOTP.ts#L36)
 
@@ -17,29 +17,29 @@ Calculate the OTP code using TOTP algorithm.
 
 ### key
 
+`string` \| `Buffer`\<`ArrayBufferLike`\>
+
 The key of TOTP (Buffer or BASE32-encoded string).
 
-`string` | `Buffer`\<`ArrayBufferLike`\>
-
-### time
+### time?
 
 `number` = `...`
 
 The current time in milliseconds. [default: Date.now()]
 
-### digits
+### digits?
 
 `number` = `cL.DEFAULT_DIGITS`
 
 The output width of OTP [default: 6].
 
-### period
+### period?
 
 `number` = `cL.DEFAULT_PERIOD`
 
 The code generation interval of TOTP, in second. [default: 30]
 
-### digest
+### digest?
 
 [`EDigest`](../../Constants/enumerations/EDigest.md) = `cL.DEFAULT_DIGEST`
 

@@ -10,7 +10,7 @@ Generator function type for TOTP codes.
 
 Defined in: [TOTP.ts:76](https://github.com/litert/otp.js/blob/master/src/lib/TOTP.ts#L76)
 
-Generator function type for TOTP codes.
+Generate a TOTP code using the configured key and time.
 
 ## Parameters
 

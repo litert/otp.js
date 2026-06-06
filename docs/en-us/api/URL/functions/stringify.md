@@ -17,9 +17,9 @@ Generate a OTP URL which could be used to generate QR code, and then read by the
 
 ### opts
 
-The options for generating the URL.
+[`IUrlInfoForHOTP`](../interfaces/IUrlInfoForHOTP.md) \| [`IUrlInfoForTOTP`](../interfaces/IUrlInfoForTOTP.md)
 
-[`IUrlInfoForHOTP`](../interfaces/IUrlInfoForHOTP.md) | [`IUrlInfoForTOTP`](../interfaces/IUrlInfoForTOTP.md)
+The options for generating the URL.
 
 ## Returns
 

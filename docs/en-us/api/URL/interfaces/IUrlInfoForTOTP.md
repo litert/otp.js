@@ -12,7 +12,7 @@ Defined in: [URL.ts:94](https://github.com/litert/otp.js/blob/master/src/lib/URL
 
 ### betterCompatibility?
 
-> `optional` **betterCompatibility**: `boolean`
+> `optional` **betterCompatibility?**: `boolean`
 
 Defined in: [URL.ts:31](https://github.com/litert/otp.js/blob/master/src/lib/URL.ts#L31)
 
@@ -32,7 +32,7 @@ false
 
 ### digest?
 
-> `optional` **digest**: [`EDigest`](../../Constants/enumerations/EDigest.md)
+> `optional` **digest?**: [`EDigest`](../../Constants/enumerations/EDigest.md)
 
 Defined in: [URL.ts:78](https://github.com/litert/otp.js/blob/master/src/lib/URL.ts#L78)
 
@@ -61,7 +61,7 @@ Not all authenticator apps support SHA256 or SHA512.
 
 ### digits?
 
-> `optional` **digits**: `number`
+> `optional` **digits?**: `number`
 
 Defined in: [URL.ts:56](https://github.com/litert/otp.js/blob/master/src/lib/URL.ts#L56)
 
@@ -89,7 +89,7 @@ https://datatracker.ietf.org/doc/html/rfc4226#section-5
 
 ### issuer?
 
-> `optional` **issuer**: `null` \| `string`
+> `optional` **issuer?**: `string` \| `null`
 
 Defined in: [URL.ts:66](https://github.com/litert/otp.js/blob/master/src/lib/URL.ts#L66)
 
@@ -137,7 +137,7 @@ The label of OTP code to display in OTP authenticator app.
 
 ### period?
 
-> `optional` **period**: `number`
+> `optional` **period?**: `number`
 
 Defined in: [URL.ts:107](https://github.com/litert/otp.js/blob/master/src/lib/URL.ts#L107)
 

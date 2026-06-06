@@ -10,7 +10,7 @@ Generator function type for HOTP codes.
 
 Defined in: [HOTP.ts:63](https://github.com/litert/otp.js/blob/master/src/lib/HOTP.ts#L63)
 
-Generator function type for HOTP codes.
+Generate a HOTP code using the preferences.
 
 ## Parameters
 

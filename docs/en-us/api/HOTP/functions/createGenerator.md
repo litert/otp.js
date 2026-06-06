@@ -2,7 +2,7 @@
 
 # Function: createGenerator()
 
-> **createGenerator**(`key`, `digits`, `digest`): [`IGenerator`](../interfaces/IGenerator.md)
+> **createGenerator**(`key`, `digits?`, `digest?`): [`IGenerator`](../interfaces/IGenerator.md)
 
 Defined in: [HOTP.ts:73](https://github.com/litert/otp.js/blob/master/src/lib/HOTP.ts#L73)
 
@@ -12,17 +12,17 @@ Create a HOTP code generator function using configuration.
 
 ### key
 
+`string` \| `Buffer`\<`ArrayBufferLike`\>
+
 The key of TOTP (Buffer or BASE32-encoded string).
 
-`string` | `Buffer`\<`ArrayBufferLike`\>
-
-### digits
+### digits?
 
 `number` = `cL.DEFAULT_DIGITS`
 
 The output width of OTP [default: 6].
 
-### digest
+### digest?
 
 [`EDigest`](../../Constants/enumerations/EDigest.md) = `cL.DEFAULT_DIGEST`
 

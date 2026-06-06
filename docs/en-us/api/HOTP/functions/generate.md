@@ -2,7 +2,7 @@
 
 # Function: generate()
 
-> **generate**(`key`, `sequence`, `digits`, `digest`): `string`
+> **generate**(`key`, `sequence`, `digits?`, `digest?`): `string`
 
 Defined in: [HOTP.ts:30](https://github.com/litert/otp.js/blob/master/src/lib/HOTP.ts#L30)
 
@@ -14,9 +14,9 @@ Generate a OTP code using HOTP algorithm, with the given key and sequence.
 
 ### key
 
-The key of TOTP (Buffer or BASE32-encoded string).
+`string` \| `Buffer`\<`ArrayBufferLike`\>
 
-`string` | `Buffer`\<`ArrayBufferLike`\>
+The key of TOTP (Buffer or BASE32-encoded string).
 
 ### sequence
 
@@ -24,13 +24,13 @@ The key of TOTP (Buffer or BASE32-encoded string).
 
 The sequence of OTP
 
-### digits
+### digits?
 
 `number` = `cL.DEFAULT_DIGITS`
 
 The output width of OTP. [default: 6]
 
-### digest
+### digest?
 
 [`EDigest`](../../Constants/enumerations/EDigest.md) = `cL.DEFAULT_DIGEST`
 

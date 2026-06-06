@@ -2,7 +2,7 @@
 
 # Function: createGenerator()
 
-> **createGenerator**(`key`, `digits`, `period`, `digest`): [`IGenerator`](../interfaces/IGenerator.md)
+> **createGenerator**(`key`, `digits?`, `period?`, `digest?`): [`IGenerator`](../interfaces/IGenerator.md)
 
 Defined in: [TOTP.ts:96](https://github.com/litert/otp.js/blob/master/src/lib/TOTP.ts#L96)
 
@@ -17,23 +17,23 @@ Create a TOTP code generator function using configuration.
 
 ### key
 
+`string` \| `Buffer`\<`ArrayBufferLike`\>
+
 The key of TOTP (Buffer or BASE32-encoded string).
 
-`string` | `Buffer`\<`ArrayBufferLike`\>
-
-### digits
+### digits?
 
 `number` = `cL.DEFAULT_DIGITS`
 
 The output width of OTP [default: `6`].
 
-### period
+### period?
 
 `number` = `cL.DEFAULT_PERIOD`
 
 The code generation interval of TOTP, in second. [default: `30`]
 
-### digest
+### digest?
 
 [`EDigest`](../../Constants/enumerations/EDigest.md) = `cL.DEFAULT_DIGEST`
 
