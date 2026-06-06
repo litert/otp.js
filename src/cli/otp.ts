@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import { OtpCLI } from "./OtpCLI";
+import { OtpCLI } from "./OtpCLI.js";
 
 const otpCli = new OtpCLI();
 

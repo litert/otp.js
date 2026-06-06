@@ -2,9 +2,53 @@
   "name": "@litert/otp",
   "version": "3.0.0",
   "description": "The TOTP & HOTP implement for Node.JS",
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
-  "types": "lib/index.d.ts",
+  "main": "./lib/index.js",
+  "typings": "./lib/index.d.ts",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "default": {
+        "types": "./lib/index.d.ts",
+        "default": "./lib/index.js"
+      }
+    },
+    "./constants": {
+      "default": {
+        "types": "./lib/Constants.d.ts",
+        "default": "./lib/Constants.js"
+      }
+    },
+    "./hotp": {
+      "default": {
+        "types": "./lib/HOTP.d.ts",
+        "default": "./lib/HOTP.js"
+      }
+    },
+    "./hotp/verbose": {
+      "default": {
+        "types": "./lib/verbose/HOTP.d.ts",
+        "default": "./lib/verbose/HOTP.js"
+      }
+    },
+    "./totp": {
+      "default": {
+        "types": "./lib/TOTP.d.ts",
+        "default": "./lib/TOTP.js"
+      }
+    },
+    "./totp/verbose": {
+      "default": {
+        "types": "./lib/verbose/TOTP.d.ts",
+        "default": "./lib/verbose/TOTP.js"
+      }
+    },
+    "./url": {
+      "default": {
+        "types": "./lib/URL.d.ts",
+        "default": "./lib/URL.js"
+      }
+    }
+  },
   "scripts": {
     "prepublishOnly": "npm run build-md-doc && npm run rebuild && npm run test",
     "build": "echo Using TypeScript && tsc -v && tsc -p .",
@@ -41,17 +85,18 @@
   "author": "Angus.Fenying <fenying@litert.org> (https://fenying.net)",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@commitlint/cli": "^19.6.1",
-    "@commitlint/config-conventional": "^19.6.0",
+    "@commitlint/cli": "^21.0.2",
+    "@commitlint/config-conventional": "^21.0.2",
     "@litert/eslint-plugin-rules": "^0.3.1",
-    "@types/node": "^22.10.2",
+    "@types/node": "^25.9.2",
     "husky": "^9.1.7",
-    "typedoc": "^0.28.5",
-    "typedoc-plugin-markdown": "^4.6.4",
-    "typedoc-vitepress-theme": "^1.1.2",
-    "typescript": "^5.7.2"
+    "typescript": "^6.0.3"
   },
   "dependencies": {
-    "@litert/base32": "^1.0.1"
+    "@litert/base32": "^2.0.0"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
   }
 }

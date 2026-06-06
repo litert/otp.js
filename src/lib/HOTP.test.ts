@@ -16,7 +16,7 @@
 
 import * as NodeTest from 'node:test';
 import * as NodeAssert from 'node:assert';
-import * as HOTP from './HOTP';
+import * as HOTP from './HOTP.js';
 
 NodeTest.describe('HOTP', () => {
 

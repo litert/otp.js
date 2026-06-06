@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import * as cL from './Constants';
-import * as _ from './_internal';
+import * as cL from './Constants.js';
+import * as _ from './_internal.js';
 
 /**
  * Generate a OTP code using HOTP algorithm, with the given key and sequence.

@@ -15,7 +15,7 @@
  */
 
 import { bufferFromBase32 } from "@litert/base32";
-import { TOTP, URL, Constants } from "../lib";
+import { TOTP, URL, Constants } from "../lib/index.js";
 
 const TEST_LABEL = 'Example4TOTP';
 const TEST_KEY = bufferFromBase32('B4PSUNCFJMQCUEBGEEFSYCTD');

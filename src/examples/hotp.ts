@@ -15,7 +15,7 @@
  */
 
 import { bufferFromBase32 } from "@litert/base32";
-import { URL, HOTP } from "../lib";
+import { URL, HOTP } from "../lib/index.js";
 
 const TEST_LABEL = 'Example4HOTP';
 const TEST_KEY = bufferFromBase32('B4PSUNCFJMQCUEBGEEFSYCTD');

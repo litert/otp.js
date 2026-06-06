@@ -17,8 +17,8 @@
 import * as NodeTest from 'node:test';
 import * as NodeAssert from 'node:assert';
 import * as LibBase32 from '@litert/base32';
-import * as TOTP from './TOTP';
-import * as Constants from './Constants';
+import * as TOTP from './TOTP.js';
+import * as Constants from './Constants.js';
 
 NodeTest.describe('TOTP', () => {
 

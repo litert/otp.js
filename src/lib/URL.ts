@@ -16,8 +16,8 @@
 
 import * as LibBase32 from '@litert/base32';
 import * as NodeQS from 'node:querystring';
-import * as cL from './Constants';
-import * as _ from './_internal';
+import * as cL from './Constants.js';
+import * as _ from './_internal.js';
 
 const URL_PROTOCOL = 'otpauth://';
 

@@ -1,5 +1,11 @@
 # Change Logs
 
+## v3.0.0
+
+- build: migrated to ESM modules.
+- chore: updated dependencies.
+- build: increased minimum Node.js version to 20.0.0.
+
 ## v2.0.0
 
 - build(project): refactored with supports for full OTP features.

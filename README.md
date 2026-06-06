@@ -24,7 +24,10 @@ The TOTP & HOTP implement for Node.JS.
 
 ## Requirements
 
-- TypeScript v3.1.x (Or newer)
+- Node.js >= 20.0.0
+- TypeScript v5.0.x (Or newer)
+
+> This package is an ES module (ESM). Your project must use ESM (`"type": "module"`) or be configured for ESM compatibility.
 
 ## Installation
 
@@ -36,7 +39,42 @@ npm i @litert/otp --save
 
 ### Use in code
 
-See examples:
+#### Namespace import (recommended)
+
+```ts
+import * as LibOTP from '@litert/otp';
+
+// TOTP
+const code = LibOTP.TOTP.generate(Buffer.from('12345678901234567890'));
+const gen = LibOTP.TOTP.createGenerator(Buffer.from('12345678901234567890'));
+console.log(gen());
+
+// HOTP
+const hotpCode = LibOTP.HOTP.generate(Buffer.from('12345678901234567890'), 0);
+
+// URL
+const url = LibOTP.URL.stringify({
+    type: 'totp',
+    key: Buffer.from('12345678901234567890'),
+    label: 'user@example.com',
+});
+const info = LibOTP.URL.parse(url);
+```
+
+#### Subpath imports (tree-shakable)
+
+You can also import individual modules via subpath exports:
+
+```ts
+import { generate } from '@litert/otp/totp';
+import { generate as generateHOTP, createGenerator } from '@litert/otp/hotp';
+import { stringify, parse } from '@litert/otp/url';
+import { EDigest, DEFAULT_DIGITS } from '@litert/otp/constants';
+import { generate as generateVerboseTOTP } from '@litert/otp/totp/verbose';
+import { generate as generateVerboseHOTP } from '@litert/otp/hotp/verbose';
+```
+
+See full examples:
 
 - [HOTP](./src/examples/hotp.ts)
 - [TOTP](./src/examples/totp.ts)

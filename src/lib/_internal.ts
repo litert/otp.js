@@ -16,7 +16,7 @@
 
 import * as NodeCrypto from 'node:crypto';
 import * as LibBase32 from '@litert/base32';
-import * as cL from './Constants';
+import * as cL from './Constants.js';
 
 const hmacBuf = Buffer.allocUnsafe(8);
 

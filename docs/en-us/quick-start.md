@@ -11,7 +11,18 @@ See [RFC 6238](https://datatracker.ietf.org/doc/html/rfc6238) for more details.
 ### Import the `@litert/otp` library:
 
 ```ts
+// Namespace import (all modules)
 import * as LibOTP from '@litert/otp';
+```
+
+Or use subpath imports for tree-shaking:
+
+```ts
+// Individual module imports
+import { generate, createGenerator } from '@litert/otp/totp';
+import { generate as generateHOTP } from '@litert/otp/hotp';
+import { stringify, parse } from '@litert/otp/url';
+import { EDigest, DEFAULT_DIGITS } from '@litert/otp/constants';
 ```
 
 ### Usage 1: Calculate the TOTP Code directly with a given key

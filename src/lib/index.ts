@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-export * as TOTP from './TOTP';
-export * as HOTP from './HOTP';
-export * as URL from './URL';
-export * as Constants from './Constants';
+export * as TOTP from './TOTP.js';
+export * as HOTP from './HOTP.js';
+export * as URL from './URL.js';
+export * as Constants from './Constants.js';

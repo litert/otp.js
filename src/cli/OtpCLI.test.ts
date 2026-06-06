@@ -18,8 +18,8 @@ import * as NodeTest from 'node:test';
 import * as NodeFS from 'node:fs';
 import * as NodeAssert from 'node:assert';
 import * as LibBase32 from '@litert/base32';
-import * as LibOTP from '../lib';
-import { EAction, OtpCLI } from './OtpCLI';
+import * as LibOTP from '../lib/index.js';
+import { EAction, OtpCLI } from './OtpCLI.js';
 
 const TOTP_TEST_CASES = [
     { time: '2025-06-16T14:45:00.000Z', period: 30, otp: '605819', digest: LibOTP.Constants.EDigest.SHA1, },
@@ -904,7 +904,7 @@ NodeTest.describe('CLI', () => {
             [ [LibOTP.TOTP.generate(Buffer.from(TEST_KEY_RAW))], 0 ],
         );
 
-        const TMP_KEY_FILE_PATH = `${__dirname}/../test-data/tmp.key`;
+        const TMP_KEY_FILE_PATH = `${import.meta.dirname}/../test-data/tmp.key`;
 
         NodeFS.writeFileSync(TMP_KEY_FILE_PATH, TEST_KEY_RAW);
         NodeAssert.deepStrictEqual(

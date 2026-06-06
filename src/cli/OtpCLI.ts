@@ -17,9 +17,11 @@
 import * as NodeUtils from 'node:util';
 import * as NodeFS from 'node:fs';
 import * as Base32 from '@litert/base32';
-import * as LibOtp from '../lib';
-import type { IVerboseResult  } from '../lib/verbose/_internal';
-import { EDigest } from '../lib/Constants';
+import * as LibOtp from '../lib/index.js';
+import type { IVerboseResult } from '../lib/verbose/_internal.js';
+import { EDigest } from '../lib/Constants.js';
+import * as VerboseTOTP from '../lib/verbose/TOTP.js';
+import * as VerboseHOTP from '../lib/verbose/HOTP.js';
 
 /**
  * The action for the CLI tool.
@@ -62,7 +64,8 @@ export class OtpCLI {
 
     private _printVersionMessage() {
 
-        this._ob.push(`OTP (One-Time Password) CLI Tool/${require('../package.json').version} (https://github.com/litert/otp.js)`);
+        const pkgJson = JSON.parse(NodeFS.readFileSync(`${import.meta.dirname}/../package.json`, 'utf-8')) as { version: string };
+        this._ob.push(`OTP (One-Time Password) CLI Tool/${pkgJson.version} (https://github.com/litert/otp.js)`);
     }
 
     private _printHelpMessage(): void {
@@ -271,7 +274,7 @@ export class OtpCLI {
 
     ) {
 
-        const vResult: IVerboseResult = require('../lib/verbose/TOTP').generate(key, time, digits, period, digest);
+        const vResult: IVerboseResult = VerboseTOTP.generate(key, time, digits, period, digest);
 
         if (outputAsJson) {
 
@@ -413,7 +416,7 @@ export class OtpCLI {
         outputAsJson: boolean,
     ): void {
 
-        const vResult: IVerboseResult = require('../lib/verbose/HOTP').generate(key, sequence, digits, digest);
+        const vResult: IVerboseResult = VerboseHOTP.generate(key, sequence, digits, digest);
 
         if (outputAsJson) {
 

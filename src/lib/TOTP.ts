@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import * as cL from './Constants';
-import * as _ from './_internal';
+import * as cL from './Constants.js';
+import * as _ from './_internal.js';
 
 /**
  * Calculate the OTP code using TOTP algorithm.

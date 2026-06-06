@@ -1,7 +1,7 @@
 // eslint.config.js
-const LitertEslintRules = require('@litert/eslint-plugin-rules');
+import LitertEslintRules from '@litert/eslint-plugin-rules';
 
-module.exports = [
+export default [
     ...LitertEslintRules.configs.typescript,
     {
         files: [
@@ -10,7 +10,7 @@ module.exports = [
         languageOptions: {
             parserOptions: {
                 project: 'tsconfig.json',
-                tsconfigRootDir: __dirname,
+                tsconfigRootDir: import.meta.dirname,
             },
         }
     },
